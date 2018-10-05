@@ -1,0 +1,13 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    app.example_listener:
+        class: AppBundle\Listener\ExampleEventListener
+        arguments: [ @doctrine.orm.entity_manager ]  # Hmmm, is that correct really?
+        tags:
+           - { name: kernel.event_listener, event: app.event.get_user, method: onGetUser }
+           - { name: kernel.event_listener, event: app.event.get_one_user, method: onGetOneUser }
+           - { name: kernel.event_listener, event: app.event.create_user, method: onCreateUser }
